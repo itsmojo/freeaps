@@ -3,6 +3,7 @@ import Swinject
 
 @main struct FreeAPSApp: App {
     @Environment(\.scenePhase) var scenePhase
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     // Dependencies Assembler
     // contain all dependencies Assemblies
@@ -34,6 +35,10 @@ import Swinject
         _ = resolver.resolve(FetchGlucoseManager.self)!
         _ = resolver.resolve(FetchTreatmentsManager.self)!
         _ = resolver.resolve(FetchAnnouncementsManager.self)!
+        _ = resolver.resolve(CalendarManager.self)!
+        _ = resolver.resolve(UserNotificationsManager.self)!
+        _ = resolver.resolve(WatchManager.self)!
+        _ = resolver.resolve(HealthKitManager.self)!
     }
 
     init() {

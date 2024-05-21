@@ -93,6 +93,9 @@ struct MainChartView: View {
         return formatter
     }
 
+    @Environment(\.horizontalSizeClass) var hSizeClass
+    @Environment(\.verticalSizeClass) var vSizeClass
+
     // MARK: - Views
 
     var body: some View {
@@ -101,6 +104,18 @@ struct MainChartView: View {
                 yGridView(fullSize: geo.size)
                 mainScrollView(fullSize: geo.size)
                 glucoseLabelsView(fullSize: geo.size)
+            }
+            .onChange(of: hSizeClass) { _ in
+                update(fullSize: geo.size)
+            }
+            .onChange(of: vSizeClass) { _ in
+                update(fullSize: geo.size)
+            }
+            .onReceive(
+                Foundation.NotificationCenter.default
+                    .publisher(for: UIDevice.orientationDidChangeNotification)
+            ) { _ in
+                update(fullSize: geo.size)
             }
         }
     }
@@ -364,7 +379,6 @@ extension MainChartView {
         calculateGlucoseDots(fullSize: fullSize)
         calculateBolusDots(fullSize: fullSize)
         calculateCarbsDots(fullSize: fullSize)
-        calculateTempTargetsRects(fullSize: fullSize)
         calculateTempTargetsRects(fullSize: fullSize)
         calculateBasalPoints(fullSize: fullSize)
         calculateSuspensions(fullSize: fullSize)
@@ -785,10 +799,7 @@ extension MainChartView {
     }
 
     private func timeToXCoordinate(_ time: TimeInterval, fullSize: CGSize) -> CGFloat {
-        let xOffset = -(
-            glucose.first?.dateString.timeIntervalSince1970 ?? Date()
-                .addingTimeInterval(-1.days.timeInterval).timeIntervalSince1970
-        )
+        let xOffset = -Date().addingTimeInterval(-1.days.timeInterval).timeIntervalSince1970
         let stepXFraction = fullGlucoseWidth(viewWidth: fullSize.width) / CGFloat(hours.hours.timeInterval)
         let x = CGFloat(time + xOffset) * stepXFraction
         return x
@@ -865,12 +876,12 @@ extension MainChartView {
     }
 
     private func firstHourDate() -> Date {
-        let firstDate = glucose.first?.dateString ?? Date()
+        let firstDate = Date().addingTimeInterval(-1.days.timeInterval)
         return firstDate.dateTruncated(from: .minute)!
     }
 
     private func firstHourPosition(viewWidth: CGFloat) -> CGFloat {
-        let firstDate = glucose.first?.dateString ?? Date()
+        let firstDate = Date().addingTimeInterval(-1.days.timeInterval)
         let firstHour = firstHourDate()
 
         let lastDeltaTime = firstHour.timeIntervalSince(firstDate)

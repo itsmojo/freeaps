@@ -5,28 +5,35 @@ extension Calibrations {
     final class StateModel: BaseStateModel<Provider> {
         @Injected() var glucoseStorage: GlucoseStorage!
         @Injected() var calibrationService: CalibrationService!
-        @Injected() var settingsManager: SettingsManager!
 
         @Published var slope: Double = 1
         @Published var intercept: Double = 1
         @Published var newCalibration: Decimal = 0
         @Published var calibrations: [Calibration] = []
         @Published var calibrate: (Double) -> Double = { $0 }
+        @Published var items: [Item] = []
 
         var units: GlucoseUnits = .mmolL
 
         override func subscribe() {
+            units = settingsManager.settings.units
+            calibrate = calibrationService.calibrate
+            setupCalibrations()
+        }
+
+        private func setupCalibrations() {
             slope = calibrationService.slope
             intercept = calibrationService.intercept
-
-            units = settingsManager.settings.units
             calibrations = calibrationService.calibrations
-            calibrate = calibrationService.calibrate
+            items = calibrations.map {
+                Item(calibration: $0)
+            }
         }
 
         func addCalibration() {
             defer {
-                hideModal()
+                UIApplication.shared.endEditing()
+                setupCalibrations()
             }
 
             var glucose = newCalibration
@@ -38,7 +45,7 @@ extension Calibrations {
                   lastGlucose.dateString.addingTimeInterval(60 * 4.5) > Date(),
                   let unfiltered = lastGlucose.unfiltered
             else {
-                warning(.service, "Glucose is invalid for calibration")
+                info(.service, "Glucose is stale for calibration")
                 return
             }
 
@@ -49,12 +56,18 @@ extension Calibrations {
 
         func removeLast() {
             calibrationService.removeLast()
-            hideModal()
+            setupCalibrations()
         }
 
         func removeAll() {
             calibrationService.removeAllCalibrations()
-            hideModal()
+            setupCalibrations()
+        }
+
+        func removeAtIndex(_ index: Int) {
+            let calibration = calibrations[index]
+            calibrationService.removeCalibration(calibration)
+            setupCalibrations()
         }
     }
 }

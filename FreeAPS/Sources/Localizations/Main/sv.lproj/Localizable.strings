@@ -2,8 +2,8 @@
   Localizable.strings
   FreeAPS X
 */
+/* -------------------------------- */
 /* Bolus screen when adding insulin */
-
 "Add insulin without actually bolusing" = "Lägg till insulin utan att ge bolus";
 
 /* Add insulin from source outside of pump */
@@ -43,12 +43,6 @@
 /*  */
 "Agree and continue" = "Godkänn och fortsätt";
 
-/* Disclaimer when opening app for first time*/
-"Disclaimer" = "Varning";
-
-/* Disclaimer Description */
-"FreeAPS X is in an active development state. We do not recommend to use the system for everyday control of blood glucose! Use it for testing purposes only at your own risk. We are not responsible for your decisions and actions." = "FreeAPS X är under utveckling. Vi rekommenderar att du undviker att använda denna app för behandling av din diabetes i detta tidiga skede. Använd för test och på egen risk. Vi tar inget ansvar för dina beslut eller handlingar.";
-
 /* Enacted at a date */
 "Enacted at %@" = "Utfört kl %@";
 
@@ -72,6 +66,9 @@
 
 /* Add carbs screen */
 "Add Carbs" = "Lägg till kolhydrater";
+
+/* Add carbs header and button in Watch app. You can skip the last " " space. It's just for differentiation */
+"Add Carbs " = "Lägg till";
 
 /*  */
 "Amount Carbs" = "Mängd kolhydrater";
@@ -132,6 +129,12 @@
 
 /* Upper temp target limit */
 "Top target" = "Övre målvärde";
+
+/*  Temp target set for ... minutes */
+"for" = "i";
+
+/*  Temp target set for ... minutes */
+"min" = "min";
 
 /*  */
 "Autotune" = "Autotune";
@@ -332,6 +335,9 @@ Enact a temp Basal or a temp target */
 /* grams */
 " g" = " g";
 
+/* The short unit display string for grams */
+"g" = "g";
+
 /* when 0 U/hr */
 "0 U/hr" = "0 IE/h";
 
@@ -401,10 +407,28 @@ Enact a temp Basal or a temp target */
 /* Other CGM setting */
 "Other" = "Annan";
 
+/* Whatch app alert */
+"Set temp targets presets on iPhone first" = "Spara ett tillfälligt målvärde på din iPhone först";
 
-/* Calendar and Libre transmitter settings --------------*/
+/* Updating Watch app */
+"Updating..." = "Uppdaterar...";
+
+/* Header for Temp targets in Watch app */
+"Temp Targets" = "Målvärden";
+
+/* Delete carbs from Treatments list*/
+"Delete carbs?" = "Ta bort kolhydrater?";
+
+/* Treatments list */
+"Treatments" = "Behandlingar";
+
+/* " min" in Treatments list */
+" min" = " min";
+
+
+/* Calendar and Libre transmitter settings ---------------
+ */
 /* */
-
 "Configure Libre Transmitter" = "Ställ in en Libre-sändare";
 
 /* */
@@ -474,9 +498,6 @@ Enact a temp Basal or a temp target */
 "Remove All" = "Ta bort alla";
 
 /* */
-"Calibrations" = "Kalibreringar";
-
-/* */
 "About the Process" = "Om processen";
 
 /* */
@@ -539,8 +560,8 @@ Enact a temp Basal or a temp target */
 /* Glucose: %@ */
 "Glucose: %@" = "Glukos: %@";
 
-/* Transmitter: %@ */
-"Transmitter: %@" = "Sändare: %@";
+/* Transmitter: %@%% */
+"Transmitter: %@%%" = "Sändare: %@%%";
 
 /* No Sensor Detected */
 "No Sensor Detected" = "Ingen Sensor upptäckt";
@@ -570,7 +591,16 @@ Enact a temp Basal or a temp target */
 "Detected sensor is invalid: %@" = "Upptäckt sensor är ogiltig: %@";
 
 /* Low Battery */
-"Low Battery" = "Låg batterinivå";
+"Low battery" = "Låg batterinivå";
+
+/* */
+"Invalid sensor" = "Ogiltig sensor";
+
+/* */
+"Sensor change" = "Sensorbyte";
+
+/* */
+"Sensor expires soon" = "Sensor går ut snart";
 
 /* Battery is running low %@, consider charging your %@ device as soon as possible */
 "Battery is running low %@, consider charging your %@ device as soon as possible" = "Batterinivå är låg %@, överväg att ladda din %@ enhet så snart som möjligt";
@@ -584,10 +614,293 @@ Enact a temp Basal or a temp target */
 /* Current Sensor is Ending soon! Sensor Life left in %@ */
 "Current Sensor is Ending soon! Sensor Life left in %@" = "Nuvarande sensor behöver snart bytas! Sensortid kvar i %@";
 
+/* */
+"Libre Bluetooth" = "Libre bluetooth";
 
-/* Headers for settings ------------------- */
+/* */
+"Snooze Alerts" = "Snooza larm";
+
+/* */
+"Last measurement" = "Senaste mätning";
+
+/* */
+"Sensor Footer checksum" = "Kontrollsumma för sensor";
+
+/* */
+"Last Blood Sugar prediction" = "Senaste blodsockerförutsägelse";
+
+/* */
+"CurrentBG" = "NuvarandeBG";
+
+/* */
+"Sensor Info" = "SensorInfo";
+
+/* */
+"Sensor Age" = "Sensorålder";
+
+/* */
+"Sensor Age Left" = "Sensortid kvar";
+
+/* */
+"Sensor Endtime" = "Sensor slutdatum";
+
+/* */
+"Sensor State" = "Sensorläge";
+
+/* */
+"Sensor Serial" = "Sensorns serienummer";
+
+/* */
+"Transmitter Info" = "Sändarinfo";
+
+/* */
+"Hardware" = "Hårdvara";
+
+/* */
+"Firmware" = "Firmware";
+
+/* */
+"Connection State" = "Anslutningsstatus";
+
+/* */
+"Transmitter Type" = "Sändartyp";
+
+/* */
+"Sensor Type" = "Sensortyp";
+
+/* */
+"Factory Calibration Parameters" = "Parametrar för fabrikskalibrering";
+
+/* */
+"Valid for footer" = "Giltig för sidfot";
+
+/* */
+"Edit calibrations" = "Ändra kalibreringar";
+
+/* */
+"edit calibration clicked" = "ändrad kalibrering vald";
+
+/* */
+"Delete CGM" = "Radera CGM";
+
+/* */
+"Are you sure you want to remove this cgm from loop?" = "Är du säker på att du vill ta bort denna CGM från FreeAPS X?";
+
+/* */
+"There is no undo" = "Det går inte att ångra!";
+
+/* */
+"Advanced" = "Avancerat";
+
+/* */
+"Alarms" = "Larm";
+
+/* */
+"Glucose Settings" = "Glukosinställningar";
+
+/* */
+"Notifications" = "Notiser";
+
+/* */
+"Export logs" = "Exportera loggar";
+
+/* */
+"Export not available" = "Export inte tillgänglig";
+
+/* */
+"Log export requires ios 15" = "Loggexport kräver ios 15";
+
+/* */
+"Got it!" = "Uppfattat!";
+
+/* */
+"Saved to %@" = "Sparad till %@";
+
+/* */
+"No logs available" = "Inga loggar tillgängliga";
+
+/* */
+"Glucose Notification visibility" = "Blodsockernotiser";
+
+/* */
+"Always Notify Glucose" = "Meddela alltid glukos";
+
+/* */
+"Notify per reading" = "Meddela per avläsning";
+
+/* */
+"Value" = "Värde";
+
+/* */
+"Adds Phone Battery" = "Visa telefonens batterinivå";
+
+/* */
+"Adds Transmitter Battery" = "Lägger till sändarbatteri";
+
+/* */
+"Also vibrate" = "Vibrera också";
+
+/* */
+"Additional notification types" = "Ytterligare notistyper";
+
+/* */
+"Misc" = "Övrigt";
+
+/* */
+"Unit override" = "Åsidosätt enhet";
+
+/* */
+"Low" = "Lågt";
+
+/* */
+"High" = "Högt";
+
+/* */
+"glucose" = "glukos";
+
+/* */
+"Schedule " = "Schema ";
+
+/* */
+"tapped save schedules" = "klickat på sparade scheman";
+
+/* */
+"Error" = "Fel";
+
+/* */
+"Some ui element was incorrectly specified" = "Vissa UI-element felaktigt specificerade";
+
+/* */
+"Success" = "Lyckades";
+
+/* */
+"Schedules were saved successfully!" = "Scheman har sparats!";
+
+/* */
+"High Glucose Alarm active" = "Högt blodsockerlarm aktivt";
+
+/* */
+"Low Glucose Alarm active" = "Lågt blodsockerlarm aktivt";
+
+/* */
+"No Glucose Alarm active" = "Inget blodsockerlarm aktivt";
+
+/* */
+"snoozing until %@" = "snoozar till %@";
+
+/* */
+"not snoozing" = "snoozar inte";
+
+/* */
+"nothing to see here" = "inget att se här";
+
+/* */
+"snooze from testview clicked" = "klickat på snooze från testvy";
+
+/* */
+"will snooze for %@ until %@" = "kommer att snooza i %@ tills %@";
+
+/* */
+"Click to Snooze Alerts" = "Klicka för att snooza varningar";
+
+/* */
+"Strength" = "Styrka";
+
+/* */
+"Hold the top of your iPhone near the sensor to pair" = "Håll toppen av din iPhone nära sensorn för att parkoppla";
+
+/* */
+"Sensor not found" = "Sensorn hittades inte";
+
+/* */
+"Also play alert sound" = "Spela också upp varningsljud";
+
+/* */
+"Notification Settings" = "Notisinställningar";
+
+/* */
+"Found devices: %d" = "Hittade enheter: %d";
+
+/* */
+"Backfill options" = "Alternativ för återfyllnad";
+
+/* */
+"Backfilling from trend is currently not well supported by Loop" = "Återfyllning från trend stöds för närvarande inte bra av Loop";
+
+/* */
+"Backfill from history" = "Återfyll från historik";
+
+/* */
+"Backfill from trend" = "Återfyll från trend";
+
+/* */
+"Debug options" = "Felsökningsalternativ";
+
+/* */
+"Adds a lot of data to the Issue Report " = "Lägger till en hel del data till rapporten ";
+
+/* */
+"Persist sensordata" = "Bevara sensordata";
+
+/* */
+"Battery" = "Batteri";
+
+/* */
+"Also add source info" = "Lägg till info om CGM";
+
+/* */
+"Carbs Required Threshold" = "Tröskelvärde för kolhydrater som krävs";
+
+/* */
+"Carbs required: %d g" = "Kolhydrater som krävs: %d g";
+
+/* */
+"To prevent LOW required %d g of carbs" = "För att förhindra ett lågt blodsocker krävs uppskattningsvis %d g kolhydrater";
+
+/* */
+"FreeAPS X not active" = "FreeAPS X är inte aktiv";
+
+/* */
+"Last loop was more then %d min ago" = "Senaste loopen var mer än %d min sedan";
+
+/* Glucose badge */
+"Show glucose on the app badge" = "Visa glukosvärde på app-ikon";
+
+/* */
+"Backfill glucose" = "Återfyll glukosvärden";
+
+/* About this source */
+"About this source" = "Om denna CGM";
+
+/* */
+"Bolus failed" = "Bolus misslyckades";
+
+/* */
+"Bolus failed or inaccurate. Check pump history before repeating." = "Misslyckad eller felaktig bolus. Kontrollera pumpens historik innan du försöker igen.";
+
+/* */
+"Carbs" = "Kolhydrater";
+
+/* */
+"Temp Basal" = "Temporär basal";
+
+/* */
+"Temp Target" = "Tillfälligt målvärde";
+
+/* */
+"Resume" = "Återuppta";
+
+/* */
+"Suspend" = "Pausa";
+
+/* */
+"Animated Background" = "Animerad Bakgrund";
+
+/* Sensor day(s) */
+" day(s)" = " dagar";
 
 
+/* Headers for settings ----------------------- */
 "OpenAPS main settings" = "OpenAPS huvudsakliga inställningar";
 
 "OpenAPS SMB settings" = "OpenAPS SMB-inställningar";
@@ -596,7 +909,48 @@ Enact a temp Basal or a temp target */
 
 "OpenAPS other settings" = "OpenAPS andra inställningar";
 
-/*
+/* Glucose Simulator CGM */
+"Glucose Simulator" = "Glukossimulator";
+
+/* Restored state message */
+"Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@" = "Bluetooth-status återställd (APS startades om?). Hittade %d perifera enheter anslutna till %@ med identifieraren %@";
+
+/* Shared app group */
+"Shared app group for direct connection with Libre 1 transmitters or European Libre 2 sensors" = "Delad appgrupp för direkt anslutning till Libre 1-sändare eller europeiska Libre 2-sensorer";
+
+/* Native G6 app */
+"Native G6 app" = "Ursprunglig Dexcom G6-app";
+
+/* Native G5 app */
+"Native G5 app" = "Ursprunglig G5-app";
+
+/* Minilink transmitter */
+"Minilink transmitter" = "Minilink-sändare";
+
+/* Simple simulator */
+"Simple simulator" = "Enkel Glukossimulator";
+
+/* Direct connection with Libre 1 transmitters or Libre 2 */
+"Direct connection with Libre 1 transmitters or European Libre 2 sensors" = "Direkt anslutning till Libre 1-sändare eller europeiska Libre 2-sensorer";
+
+/* Online or internal server */
+"Online or internal server" = "Online eller intern server";
+
+/* HealthKit intergration --------------------*/
+/* */
+"Apple Health" = "Apple Hälsa";
+
+/* */
+"Connect to Apple Health" = "Anslut till Apple Hälsa";
+
+/* Show when have not permissions for writing to Health */
+"For write data to Apple Health you must give permissions in Settings > Health > Data Access" = "För att kunna skriva data till Apple Hälsa måste du först ge din tillåtelse i Inställningar > Hälsa > Datatillgång och enheter";
+
+/* */
+"After you create glucose records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data" = "Efter att du lagt till glukos i appen 'Hälsa', öppna FreeAPS X för att bekräfta att överföring skett på rätt sätt";
+/* --------------------------------------------
+
+
   Infotexts from openaps.docs and androidaps.docs
   FreeAPS X
 */
@@ -702,10 +1056,10 @@ Enact a temp Basal or a temp target */
 "Minimum duration in minutes between two enacted SMBs" = "Minsta tidsintervall mellan två supermikrobolusar.";
 
 /* "Bolus Increment" */
-"Smallest possible bolus amount" = "Minsta möjliga bolusdos";
+"Smallest SMB / SMB increment in oref0. Minimum amount for Medtronic pumps is 0.1 U, whereas for Omnipod it’s 0.05 U. The default value is 0.1." = "Minsta möjliga SMB (supermikrobolus) i oref0. För Medtronic är minsta möjliga dos 0,1 U, medan det för Omnipod är 0,05 U.";
 
 /* "Insulin Peak Time" */
-"Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-papid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops." = "Tid i minuter för när insulinet har som störst blodsockersänkande effekt. Observera att inte ange ett lägre värde än 35 min för Lyumjev eller 50 min för Fiasp, eller högre än 100, respektive 120 min. Om du gör så kommer det att leda till problem med FreeAPS X, som röda loopar, långa Loop-beräkningar och överdrivet stora loggfiler.";
+"Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-rapid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops." = "Tid i minuter för när insulinet har som störst blodsockersänkande effekt. Observera att inte ange ett lägre värde än 35 min för Lyumjev eller 50 min för Fiasp, eller högre än 100, respektive 120 min. Om du gör så kommer det att leda till problem med FreeAPS X, som röda loopar, långa Loop-beräkningar och överdrivet stora loggfiler.";
 
 /* "Carbs Req Threshold" */
 "Grams of carbsReq to trigger a pushover. Defaults to 1 (for 1 gram of carbohydrate). Can be increased if you only want to get Pushover for carbsReq at X threshold." = "Antal kolhydrater för att utlösa en pushover-notis, av det totala antal kolhydrater nödvändiga (carbsReq) för att undvika ett lågt blodsockervärde, som krävs. Standardvärde är 1 (gram kolhydrater). Kan ökas om du bara vill få en Pushover-notis vid en större mängd nödvändiga kolhydrater.";

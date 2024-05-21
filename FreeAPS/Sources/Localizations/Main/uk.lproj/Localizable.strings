@@ -2,8 +2,8 @@
   Localizable.strings
   FreeAPS X
 */
+/* -------------------------------- */
 /* Bolus screen when adding insulin */
-
 "Add insulin without actually bolusing" = "Додати інсулін без подачі болюсу";
 
 /* Add insulin from source outside of pump */
@@ -43,12 +43,6 @@
 /*  */
 "Agree and continue" = "Прийняти і Продовжити";
 
-/* Disclaimer when opening app for first time*/
-"Disclaimer" = "Дисклеймер";
-
-/* Disclaimer Description */
-"FreeAPS X is in an active development state. We do not recommend to use the system for everyday control of blood glucose! Use it for testing purposes only at your own risk. We are not responsible for your decisions and actions." = "FreeAPS X перебуває в активній розробці. Ми не рекомендуємо використовувати цю систему для постійного контролю за глюкозою в крові! Використовуйте її тільки для тестування на власний ризик. Ми не несемо відповідальності за ваші рішення та дії.";
-
 /* Enacted at a date */
 "Enacted at %@" = "Подано в %@";
 
@@ -72,6 +66,9 @@
 
 /* Add carbs screen */
 "Add Carbs" = "Додати Вуглеводи";
+
+/* Add carbs header and button in Watch app. You can skip the last " " space. It's just for differentiation */
+"Add Carbs " = "Додати Вуглеводи ";
 
 /*  */
 "Amount Carbs" = "Кількість Вуглеводи";
@@ -133,6 +130,12 @@
 /* Upper temp target limit */
 "Top target" = "Верхня ціль";
 
+/*  Temp target set for ... minutes */
+"for" = "for";
+
+/*  Temp target set for ... minutes */
+"min" = "min";
+
 /*  */
 "Autotune" = "Автотюн";
 
@@ -149,7 +152,7 @@
 "Run now" = "Виконати";
 
 /*  */
-"Last run" = "Last run";
+"Last run" = "Останній запуск";
 
 /*  */
 "Sensitivity" = "Чутливість";
@@ -312,7 +315,7 @@ Enact a temp Basal or a temp target */
 " U" = "Од";
 
 /* /Insulin unit */
-"/U" = "/U";
+"/U" = "/Од";
 
 /* Insulin unit */
 "U" = "U";
@@ -332,6 +335,9 @@ Enact a temp Basal or a temp target */
 /* grams */
 " g" = "гр";
 
+/* The short unit display string for grams */
+"g" = "g";
+
 /* when 0 U/hr */
 "0 U/hr" = "0 Од/Год";
 
@@ -339,10 +345,10 @@ Enact a temp Basal or a temp target */
 "d" = "d";
 
 /* abbreviation for hours */
-"h" = "h";
+"h" = "г";
 
 /* abbreviation for minutes */
-"m" = "m";
+"m" = "хв.";
 
 /*  */
 "Closed loop" = "Замкнена петля";
@@ -401,10 +407,28 @@ Enact a temp Basal or a temp target */
 /* Other CGM setting */
 "Other" = "Інше";
 
+/* Whatch app alert */
+"Set temp targets presets on iPhone first" = "Set temp targets presets on iPhone first";
 
-/* Calendar and Libre transmitter settings --------------*/
+/* Updating Watch app */
+"Updating..." = "Updating...";
+
+/* Header for Temp targets in Watch app */
+"Temp Targets" = "Temp Targets";
+
+/* Delete carbs from Treatments list*/
+"Delete carbs?" = "Delete carbs?";
+
+/* Treatments list */
+"Treatments" = "Treatments";
+
+/* " min" in Treatments list */
+" min" = " min";
+
+
+/* Calendar and Libre transmitter settings ---------------
+ */
 /* */
-
 "Configure Libre Transmitter" = "Налаштувати Libre Transmitter";
 
 /* */
@@ -450,19 +474,19 @@ Enact a temp Basal or a temp target */
 "Add calibration" = "Додати калібрування";
 
 /* When adding capillary glucose meater reading */
-"Meter glucose" = "Meter glucose";
+"Meter glucose" = "Вимірювач глюкози";
 
 /* */
 "Info" = "Інформація";
 
 /*v*/
-"Slope" = "Slope";
+"Slope" = "Нахил";
 
 /* */
-"Intercept" = "Intercept";
+"Intercept" = "Перетин";
 
 /* */
-"Chart" = "Chart";
+"Chart" = "Графік";
 
 /* */
 "Remove" = "Вилучити";
@@ -474,109 +498,115 @@ Enact a temp Basal or a temp target */
 "Remove All" = "Вилучити все";
 
 /* */
-"Calibrations" = "Калібрування";
-
-/* */
 "About the Process" = "Про процес";
 
 /* */
 "Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working." = "Будь ласка, переконайтеся, що ваш датчик Libre 2 вже активований і закінчився розігрів. Якщо у вас є інші програми, які підключаються до датчика через bluetooth, їх потрібно вимкнути або видалити. \n\n Ви можете мати лише один додаток, який зв’язується з датчиком через Bluetooth. Потім натисніть кнопку «сполучення та підключення» нижче, щоб почати процес. Зверніть увагу, що з’єднання Bluetooth може зайняти до кількох хвилин, перш ніж воно почне працювати.";
 
 /* */
-"Pairinginfo" = "Pairinginfo";
+"Pairinginfo" = "Інформація про створення пари";
 
 /* */
-"PatchInfo" = "PatchInfo";
+"PatchInfo" = "Інформація про патч";
 
 /* */
-"Calibrationinfo" = "Calibrationinfo";
+"Calibrationinfo" = "Інформація калібрування";
 
 /* */
-"Unknown" = "Unknown";
+"Unknown" = "Невідомий";
 
 /* */
-"Not paired yet" = "Not paired yet";
+"Not paired yet" = "Ще не в парі";
 
 /* */
-"Pair Sensor & connect" = "Pair Sensor & connect";
+"Pair Sensor & connect" = "З'єднайте датчик і підключіть";
 
 /* */
-"Phone NFC required!" = "Phone NFC required!";
+"Phone NFC required!" = "Потрібно телефон з NFC!";
 
 /* */
-"Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors" = "Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors";
+"Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors" = "Телефон або додаток не ввімкнуто для NFC з'єднання, це потрібно для підключення Libre2";
 
 /* Bluetooth Power Off */
-"Bluetooth Power Off" = "Bluetooth Power Off";
+"Bluetooth Power Off" = "Bluetooth вимкнений";
 
 /* Please turn on Bluetooth */
-"Please turn on Bluetooth" = "Please turn on Bluetooth";
+"Please turn on Bluetooth" = "Будь ласка, увімкніть Bluetooth";
 
 /* No Libre Transmitter Selected */
-"No Libre Transmitter Selected" = "No Libre Transmitter Selected";
+"No Libre Transmitter Selected" = "Не обрано Libre Transmitter";
 
 /* Delete Transmitter and start anew. */
-"Delete CGMManager and start anew. Your libreoopweb credentials will be preserved" = "Delete CGMManager and start anew. Your libreoopweb credentials will be preserved";
+"Delete CGMManager and start anew. Your libreoopweb credentials will be preserved" = "Видаліть CGMManager і почніть заново. Ваші дані libreoopweb будуть збережені";
 
 /* Invalid libre checksum */
-"Invalid libre checksum" = "Invalid libre checksum";
+"Invalid libre checksum" = "Некоректна контрольна сума";
 
 /* Libre sensor was incorrectly read, CRCs were not valid */
-"Libre sensor was incorrectly read, CRCs were not valid" = "Libre sensor was incorrectly read, CRCs were not valid";
+"Libre sensor was incorrectly read, CRCs were not valid" = "Датчик Libre неправильно прочитано, CRC не правильні";
 
 /* Glucose */
-"Glucose" = "Glucose";
+"Glucose" = "Глюкоза";
 
 /* LOWALERT! */
-"LOWALERT!" = "LOWALERT!";
+"LOWALERT!" = "УВАГА НИЗЬКИЙ!";
 
 /* HIGHALERT! */
-"HIGHALERT!" = "HIGHALERT!";
+"HIGHALERT!" = "УВАГА ВИСОКИЙ!";
 
 /* (Snoozed)*/
-"(Snoozed)" = "(Snoozed)";
+"(Snoozed)" = "Відкладено";
 
 /* Glucose: %@ */
-"Glucose: %@" = "Glucose: %@";
+"Glucose: %@" = "Глюкоза: %@";
 
-/* Transmitter: %@ */
-"Transmitter: %@" = "Transmitter: %@";
+/* Transmitter: %@%% */
+"Transmitter: %@%%" = "Передавач: %@";
 
 /* No Sensor Detected */
-"No Sensor Detected" = "No Sensor Detected";
+"No Sensor Detected" = "Не виявлено датчиків";
 
 /* This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor */
-"This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor" = "This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor";
+"This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor" = "Це може бути періодична проблема, але, будь ласка, перевірте, чи ваш трансмітер міцно закріплений над вашим датчиком";
 
 /* New Sensor Detected */
-"New Sensor Detected" = "New Sensor Detected";
+"New Sensor Detected" = "Виявлено новий датчик";
 
 /* Please wait up to 30 minutes before glucose readings are available! */
-"Please wait up to 30 minutes before glucose readings are available!" = "Please wait up to 30 minutes before glucose readings are available!";
+"Please wait up to 30 minutes before glucose readings are available!" = "Будь ласка, зачекайте до 30 хвилин, перш ніж буде доступно читання з глюкозою!";
 
 /* Invalid Glucose sample detected, try again later */
-"Invalid Glucose sample detected, try again later" = "Invalid Glucose sample detected, try again later";
+"Invalid Glucose sample detected, try again later" = "Виявлено невірний показник рівня глюкози, повторіть спробу пізніше";
 
 /* ensor might have temporarily stopped, fallen off or is too cold or too warm */
-"Sensor might have temporarily stopped, fallen off or is too cold or too warm" = "Sensor might have temporarily stopped, fallen off or is too cold or too warm";
+"Sensor might have temporarily stopped, fallen off or is too cold or too warm" = "Датчики можуть бути тимчасово зупинені, падіння або занадто холодно або тепло.";
 
 /* Invalid Sensor Detected */
-"Invalid Sensor Detected" = "Invalid Sensor Detected";
+"Invalid Sensor Detected" = "Помилка визначення сенсора";
 
 /* Detected sensor seems not to be a libre 1 sensor! */
-"Detected sensor seems not to be a libre 1 sensor!" = "Detected sensor seems not to be a libre 1 sensor!";
+"Detected sensor seems not to be a libre 1 sensor!" = "Виявлений датчик не є датчиком Libre1!";
 
 /* Detected sensor is invalid: %@ */
-"Detected sensor is invalid: %@" = "Detected sensor is invalid: %@";
+"Detected sensor is invalid: %@" = "Виявлений датчик недійсний: %@";
 
 /* Low Battery */
-"Low Battery" = "Low Battery";
+"Low battery" = "Низький заряд батареї";
+
+/* */
+"Invalid sensor" = "Invalid sensor";
+
+/* */
+"Sensor change" = "Sensor change";
+
+/* */
+"Sensor expires soon" = "Sensor expires soon";
 
 /* Battery is running low %@, consider charging your %@ device as soon as possible */
-"Battery is running low %@, consider charging your %@ device as soon as possible" = "Battery is running low %@, consider charging your %@ device as soon as possible";
+"Battery is running low %@, consider charging your %@ device as soon as possible" = "Рівень заряду батареї низький %@, зарядіть ваш %@ пристрій найшвидше";
 
 /* Extracting calibrationdata from sensor */
-"Extracting calibrationdata from sensor" = "Extracting calibrationdata from sensor";
+"Extracting calibrationdata from sensor" = "Вилучення калібрування даних від датчика";
 
 /* Sensor Ending Soon */
 "Sensor Ending Soon" = "Sensor Ending Soon";
@@ -584,75 +614,293 @@ Enact a temp Basal or a temp target */
 /* Current Sensor is Ending soon! Sensor Life left in %@ */
 "Current Sensor is Ending soon! Sensor Life left in %@" = "Current Sensor is Ending soon! Sensor Life left in %@";
 
-"Libre Transmitter" = "Libre Transmitter";
+/* */
+"Libre Bluetooth" = "Libre Bluetooth";
 
-"Libre Transmitters" = "Libre Transmitters";
+/* */
+"Snooze Alerts" = "Snooze Alerts";
 
-"Bluetooth Transmitters" = "Bluetooth Transmitters";
+/* */
+"Last measurement" = "Last measurement";
 
-"Modes" = "Modes";
+/* */
+"Sensor Footer checksum" = "Sensor Footer checksum";
 
-"Libre 2 Direct" = "Libre 2 Direct";
+/* */
+"Last Blood Sugar prediction" = "Last Blood Sugar prediction";
 
-"Select the third party transmitter you want to connect to" = "Select the third party transmitter you want to connect to";
+/* */
+"CurrentBG" = "CurrentBG";
 
-/* The short unit display string for millimoles of glucose per liter */
-"mmol/L" = "mmol/L";
+/* */
+"Sensor Info" = "Sensor Info";
 
-/* The short unit display string for milligrams of glucose per decilter */
-"mg/dL" = "mg/dL";
+/* */
+"Sensor Age" = "Sensor Age";
 
-"Add calibration" = "Add calibration";
+/* */
+"Sensor Age Left" = "Sensor Age Left";
 
-"Meter glucose" = "Meter glucose";
+/* */
+"Sensor Endtime" = "Sensor Endtime";
 
-"Info" = "Info";
+/* */
+"Sensor State" = "Sensor State";
 
-"Slope" = "Slope";
+/* */
+"Sensor Serial" = "Sensor Serial";
 
-"Intercept" = "Intercept";
+/* */
+"Transmitter Info" = "Transmitter Info";
 
-"Chart" = "Chart";
+/* */
+"Hardware" = "Hardware";
 
-"Remove" = "Remove";
+/* */
+"Firmware" = "Firmware";
 
-"Remove Last" = "Remove Last";
+/* */
+"Connection State" = "Connection State";
 
-"Remove All" = "Remove All";
+/* */
+"Transmitter Type" = "Transmitter Type";
 
-"Calibrations" = "Calibrations";
+/* */
+"Sensor Type" = "Sensor Type";
 
-"About the Process" = "About the Process";
+/* */
+"Factory Calibration Parameters" = "Factory Calibration Parameters";
 
-"Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working." = "Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working.";
+/* */
+"Valid for footer" = "Valid for footer";
 
-"Pairinginfo" = "Pairinginfo";
+/* */
+"Edit calibrations" = "Edit calibrations";
 
-"PatchInfo" = "PatchInfo";
+/* */
+"edit calibration clicked" = "edit calibration clicked";
 
-"Calibrationinfo" = "Calibrationinfo";
+/* */
+"Delete CGM" = "Delete CGM";
 
-"Unknown" = "Unknown";
+/* */
+"Are you sure you want to remove this cgm from loop?" = "Are you sure you want to remove this cgm from loop?";
 
-"Not paired yet" = "Not paired yet";
+/* */
+"There is no undo" = "There is no undo";
 
-"Pair Sensor & connect" = "Pair Sensor & connect";
+/* */
+"Advanced" = "Advanced";
 
-"Phone NFC required!" = "Phone NFC required!";
+/* */
+"Alarms" = "Alarms";
 
-"Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors" = "Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors";
+/* */
+"Glucose Settings" = "Glucose Settings";
 
-"Bluetooth Power Off" = "Bluetooth Power Off";
+/* */
+"Notifications" = "Notifications";
 
-"Please turn on Bluetooth" = "Please turn on Bluetooth";
+/* */
+"Export logs" = "Export logs";
 
-"No Libre Transmitter Selected" = "No Libre Transmitter Selected";
+/* */
+"Export not available" = "Export not available";
 
-"Delete CGMManager and start anew. Your libreoopweb credentials will be preserved" = "Delete CGMManager and start anew. Your libreoopweb credentials will be preserved";
+/* */
+"Log export requires ios 15" = "Log export requires ios 15";
+
+/* */
+"Got it!" = "Got it!";
+
+/* */
+"Saved to %@" = "Saved to %@";
+
+/* */
+"No logs available" = "No logs available";
+
+/* */
+"Glucose Notification visibility" = "Glucose Notification visibility";
+
+/* */
+"Always Notify Glucose" = "Always Notify Glucose";
+
+/* */
+"Notify per reading" = "Notify per reading";
+
+/* */
+"Value" = "Value";
+
+/* */
+"Adds Phone Battery" = "Adds Phone Battery";
+
+/* */
+"Adds Transmitter Battery" = "Adds Transmitter Battery";
+
+/* */
+"Also vibrate" = "Also vibrate";
+
+/* */
+"Additional notification types" = "Additional notification types";
+
+/* */
+"Misc" = "Misc";
+
+/* */
+"Unit override" = "Unit override";
+
+/* */
+"Low" = "Low";
+
+/* */
+"High" = "High";
+
+/* */
+"glucose" = "glucose";
+
+/* */
+"Schedule " = "Schedule ";
+
+/* */
+"tapped save schedules" = "tapped save schedules";
+
+/* */
+"Error" = "Error";
+
+/* */
+"Some ui element was incorrectly specified" = "Some ui element was incorrectly specified";
+
+/* */
+"Success" = "Success";
+
+/* */
+"Schedules were saved successfully!" = "Schedules were saved successfully!";
+
+/* */
+"High Glucose Alarm active" = "High Glucose Alarm active";
+
+/* */
+"Low Glucose Alarm active" = "Low Glucose Alarm active";
+
+/* */
+"No Glucose Alarm active" = "No Glucose Alarm active";
+
+/* */
+"snoozing until %@" = "snoozing until %@";
+
+/* */
+"not snoozing" = "not snoozing";
+
+/* */
+"nothing to see here" = "nothing to see here";
+
+/* */
+"snooze from testview clicked" = "snooze from testview clicked";
+
+/* */
+"will snooze for %@ until %@" = "will snooze for %@ until %@";
+
+/* */
+"Click to Snooze Alerts" = "Click to Snooze Alerts";
+
+/* */
+"Strength" = "Strength";
+
+/* */
+"Hold the top of your iPhone near the sensor to pair" = "Hold the top of your iPhone near the sensor to pair";
+
+/* */
+"Sensor not found" = "Sensor not found";
+
+/* */
+"Also play alert sound" = "Also play alert sound";
+
+/* */
+"Notification Settings" = "Notification Settings";
+
+/* */
+"Found devices: %d" = "Found devices: %d";
+
+/* */
+"Backfill options" = "Backfill options";
+
+/* */
+"Backfilling from trend is currently not well supported by Loop" = "Backfilling from trend is currently not well supported by Loop";
+
+/* */
+"Backfill from history" = "Backfill from history";
+
+/* */
+"Backfill from trend" = "Backfill from trend";
+
+/* */
+"Debug options" = "Debug options";
+
+/* */
+"Adds a lot of data to the Issue Report " = "Adds a lot of data to the Issue Report ";
+
+/* */
+"Persist sensordata" = "Persist sensordata";
+
+/* */
+"Battery" = "Battery";
+
+/* */
+"Also add source info" = "Also add source info";
+
+/* */
+"Carbs Required Threshold" = "Carbs Required Threshold";
+
+/* */
+"Carbs required: %d g" = "Carbs required: %d g";
+
+/* */
+"To prevent LOW required %d g of carbs" = "To prevent LOW required %d g of carbs";
+
+/* */
+"FreeAPS X not active" = "FreeAPS X not active";
+
+/* */
+"Last loop was more then %d min ago" = "Last loop was more then %d min ago";
+
+/* Glucose badge */
+"Show glucose on the app badge" = "Show glucose on the app badge";
+
+/* */
+"Backfill glucose" = "Backfill glucose";
+
+/* About this source */
+"About this source" = "About this source";
+
+/* */
+"Bolus failed" = "Bolus failed";
+
+/* */
+"Bolus failed or inaccurate. Check pump history before repeating." = "Bolus failed or inaccurate. Check pump history before repeating.";
+
+/* */
+"Carbs" = "Carbs";
+
+/* */
+"Temp Basal" = "Temp Basal";
+
+/* */
+"Temp Target" = "Temp Target";
+
+/* */
+"Resume" = "Resume";
+
+/* */
+"Suspend" = "Suspend";
+
+/* */
+"Animated Background" = "Animated Background";
+
+/* Sensor day(s) */
+" day(s)" = " day(s)";
 
 
-/* Headers for settings */
-
+/* Headers for settings ----------------------- */
 "OpenAPS main settings" = "OpenAPS main settings";
 
 "OpenAPS SMB settings" = "OpenAPS SMB settings";
@@ -661,7 +909,48 @@ Enact a temp Basal or a temp target */
 
 "OpenAPS other settings" = "OpenAPS other settings";
 
-/*
+/* Glucose Simulator CGM */
+"Glucose Simulator" = "Glucose Simulator";
+
+/* Restored state message */
+"Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@" = "Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@";
+
+/* Shared app group */
+"Shared app group for direct connection with Libre 1 transmitters or European Libre 2 sensors" = "Shared app group for direct connection with Libre 1 transmitters or European Libre 2 sensors";
+
+/* Native G6 app */
+"Native G6 app" = "Native G6 app";
+
+/* Native G5 app */
+"Native G5 app" = "Native G5 app";
+
+/* Minilink transmitter */
+"Minilink transmitter" = "Minilink transmitter";
+
+/* Simple simulator */
+"Simple simulator" = "Simple simulator";
+
+/* Direct connection with Libre 1 transmitters or Libre 2 */
+"Direct connection with Libre 1 transmitters or European Libre 2 sensors" = "Direct connection with Libre 1 transmitters or European Libre 2 sensors";
+
+/* Online or internal server */
+"Online or internal server" = "Online or internal server";
+
+/* HealthKit intergration --------------------*/
+/* */
+"Apple Health" = "Apple Health";
+
+/* */
+"Connect to Apple Health" = "Connect to Apple Health";
+
+/* Show when have not permissions for writing to Health */
+"For write data to Apple Health you must give permissions in Settings > Health > Data Access" = "For write data to Apple Health you must give permissions in Settings > Health > Data Access";
+
+/* */
+"After you create glucose records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data" = "After you create glucose records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data";
+/* --------------------------------------------
+
+
   Infotexts from openaps.docs and androidaps.docs
   FreeAPS X
 */
@@ -767,10 +1056,10 @@ Enact a temp Basal or a temp target */
 "Minimum duration in minutes between two enacted SMBs" = "Minimum duration in minutes between two enacted SMBs";
 
 /* "Bolus Increment" */
-"Smallest possible bolus amount" = "Smallest possible bolus amount";
+"Smallest SMB / SMB increment in oref0. Minimum amount for Medtronic pumps is 0.1 U, whereas for Omnipod it’s 0.05 U. The default value is 0.1." = "Smallest SMB / SMB increment in oref0. Minimum amount for Medtronic pumps is 0.1 U, whereas for Omnipod it’s 0.05 U. The default value is 0.1.";
 
 /* "Insulin Peak Time" */
-"Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-papid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops." = "Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-papid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops.";
+"Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-rapid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops." = "Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-rapid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops.";
 
 /* "Carbs Req Threshold" */
 "Grams of carbsReq to trigger a pushover. Defaults to 1 (for 1 gram of carbohydrate). Can be increased if you only want to get Pushover for carbsReq at X threshold." = "Grams of carbsReq to trigger a pushover. Defaults to 1 (for 1 gram of carbohydrate). Can be increased if you only want to get Pushover for carbsReq at X threshold.";

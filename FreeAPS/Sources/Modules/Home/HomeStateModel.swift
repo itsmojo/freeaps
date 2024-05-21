@@ -1,3 +1,4 @@
+import Combine
 import LoopKitUI
 import SwiftDate
 import SwiftUI
@@ -5,10 +6,8 @@ import SwiftUI
 extension Home {
     final class StateModel: BaseStateModel<Provider> {
         @Injected() var broadcaster: Broadcaster!
-        @Injected() var settingsManager: SettingsManager!
         @Injected() var apsManager: APSManager!
         @Injected() var nightscoutManager: NightscoutManager!
-        @Injected() var calendarManager: CalendarManager!
         private let timer = DispatchTimer(timeInterval: 5)
         private(set) var filteredHours = 24
 
@@ -34,7 +33,7 @@ extension Home {
         @Published var tempRate: Decimal?
         @Published var battery: Battery?
         @Published var reservoir: Decimal?
-        @Published var pumpName = "Pump"
+        @Published var pumpName = ""
         @Published var pumpExpiresAtDate: Date?
         @Published var tempTarget: TempTarget?
         @Published var setupPump = false
@@ -42,10 +41,12 @@ extension Home {
         @Published var errorDate: Date? = nil
         @Published var bolusProgress: Decimal?
         @Published var eventualBG: Int?
-        @Published var isf: Int?
         @Published var carbsRequired: Decimal?
         @Published var allowManualTemp = false
         @Published var units: GlucoseUnits = .mmolL
+        @Published var pumpDisplayState: PumpDisplayState?
+        @Published var alarm: GlucoseAlarm?
+        @Published var animatedBackground = false
 
         override func subscribe() {
             setupGlucose()
@@ -66,6 +67,7 @@ extension Home {
             closedLoop = settingsManager.settings.closedLoop
             lastLoopDate = apsManager.lastLoopDate
             carbsRequired = suggestion?.carbsReq
+            alarm = provider.glucoseStorage.alarm
 
             setStatusTitle()
             setupCurrentTempTarget()
@@ -81,6 +83,8 @@ extension Home {
             broadcaster.register(EnactedSuggestionObserver.self, observer: self)
             broadcaster.register(PumpBatteryObserver.self, observer: self)
             broadcaster.register(PumpReservoirObserver.self, observer: self)
+
+            animatedBackground = settingsManager.settings.animatedBackground
 
             timer.eventHandler = {
                 DispatchQueue.main.async { [weak self] in
@@ -114,6 +118,9 @@ extension Home {
                 .receive(on: DispatchQueue.main)
                 .map { [weak self] error in
                     self?.errorDate = error == nil ? nil : Date()
+                    if let error = error {
+                        info(.default, error.localizedDescription)
+                    }
                     return error?.localizedDescription
                 }
                 .weakAssign(to: \.errorMessage, on: self)
@@ -122,6 +129,36 @@ extension Home {
             apsManager.bolusProgress
                 .receive(on: DispatchQueue.main)
                 .weakAssign(to: \.bolusProgress, on: self)
+                .store(in: &lifetime)
+
+            apsManager.pumpDisplayState
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] state in
+                    guard let self = self else { return }
+                    self.pumpDisplayState = state
+                    if state == nil {
+                        self.reservoir = nil
+                        self.battery = nil
+                        self.pumpName = ""
+                        self.pumpExpiresAtDate = nil
+                        self.setupPump = false
+                    } else {
+                        self.setupBattery()
+                        self.setupReservoir()
+                    }
+                }
+                .store(in: &lifetime)
+
+            $setupPump
+                .sink { [weak self] show in
+                    guard let self = self else { return }
+                    if show, let pumpManager = self.provider.apsManager.pumpManager {
+                        let view = PumpConfig.PumpSettingsView(pumpManager: pumpManager, completionDelegate: self).asAny()
+                        self.router.mainSecondaryModalView.send(view)
+                    } else {
+                        self.router.mainSecondaryModalView.send(nil)
+                    }
+                }
                 .store(in: &lifetime)
         }
 
@@ -147,7 +184,7 @@ extension Home {
                 } else {
                     self.glucoseDelta = nil
                 }
-                self.calendarManager.createEvent(for: self.recentGlucose, delta: self.glucoseDelta)
+                self.alarm = self.provider.glucoseStorage.alarm
             }
         }
 
@@ -239,7 +276,7 @@ extension Home {
             if closedLoop,
                let enactedSuggestion = enactedSuggestion,
                let timestamp = enactedSuggestion.timestamp,
-               enactedSuggestion.deliverAt == suggestion.deliverAt, suggestion.rate != nil || suggestion.units != nil
+               enactedSuggestion.deliverAt == suggestion.deliverAt, enactedSuggestion.recieved == true
             {
                 statusTitle = "Enacted at \(dateFormatter.string(from: timestamp))"
             } else if let suggestedDate = suggestion.deliverAt {
@@ -249,7 +286,6 @@ extension Home {
             }
 
             eventualBG = suggestion.eventualBG
-            isf = suggestion.isf
         }
 
         private func setupReservoir() {
@@ -314,6 +350,8 @@ extension Home.StateModel:
         allowManualTemp = !settings.closedLoop
         closedLoop = settingsManager.settings.closedLoop
         units = settingsManager.settings.units
+        animatedBackground = settingsManager.settings.animatedBackground
+        setupGlucose()
     }
 
     func pumpHistoryDidUpdate(_: [PumpHistoryEvent]) {

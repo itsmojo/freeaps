@@ -3,7 +3,7 @@ import Foundation
 import SwiftDate
 import Swinject
 
-protocol FetchGlucoseManager {}
+protocol FetchGlucoseManager: SourceInfoProvider {}
 
 final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
     private let processQueue = DispatchQueue(label: "BaseGlucoseManager.processQueue")
@@ -12,12 +12,14 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
     @Injected() var apsManager: APSManager!
     @Injected() var settingsManager: SettingsManager!
     @Injected() var libreTransmitter: LibreTransmitterSource!
+    @Injected() var healthKitManager: HealthKitManager!
+    @Injected() var deviceDataManager: DeviceDataManager!
 
     private var lifetime = Lifetime()
     private let timer = DispatchTimer(timeInterval: 1.minutes.timeInterval)
 
-    private lazy var appGroupSource = AppGroupSource()
     private lazy var dexcomSource = DexcomSource()
+    private lazy var simulatorSource = GlucoseSimulatorSource()
 
     init(resolver: Resolver) {
         injectServices(resolver)
@@ -30,14 +32,20 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
     private func updateGlucoseSource() {
         switch settingsManager.settings.cgm {
         case .xdrip:
-            glucoseSource = appGroupSource
+            glucoseSource = AppGroupSource(from: "xDrip")
         case .dexcomG5,
              .dexcomG6:
             glucoseSource = dexcomSource
         case .nightscout:
             glucoseSource = nightscoutManager
+        case .simulator:
+            glucoseSource = simulatorSource
         case .libreTransmitter:
             glucoseSource = libreTransmitter
+        case .glucoseDirect:
+            glucoseSource = AppGroupSource(from: "GlucoseDirect")
+        case .enlite:
+            glucoseSource = deviceDataManager
         }
 
         if settingsManager.settings.cgm != .libreTransmitter {
@@ -48,27 +56,37 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
     private func subscribe() {
         timer.publisher
             .receive(on: processQueue)
-            .flatMap { date -> AnyPublisher<(Date, Date, [BloodGlucose]), Never> in
+            .flatMap { date -> AnyPublisher<(Date, Date, [BloodGlucose], [BloodGlucose]), Never> in
                 debug(.nightscout, "FetchGlucoseManager heartbeat")
                 debug(.nightscout, "Start fetching glucose")
                 self.updateGlucoseSource()
-                return Publishers.CombineLatest3(
+                return Publishers.CombineLatest4(
                     Just(date),
                     Just(self.glucoseStorage.syncDate()),
-                    self.glucoseSource.fetch()
+                    self.glucoseSource.fetch(),
+                    self.healthKitManager.fetch()
                 )
                 .eraseToAnyPublisher()
             }
-            .sink { date, syncDate, glucose in
+            .sink { date, syncDate, glucose, glucoseFromHealth in
+                debug(.nightscout, "SyncDate is \(syncDate)")
+                let allGlucose = glucose + glucoseFromHealth
+                guard allGlucose.isNotEmpty else { return }
+
                 // Because of Spike dosn't respect a date query
-                let filteredByDate = glucose.filter { $0.dateString > syncDate }
+                let filteredByDate = allGlucose.filter { $0.dateString > syncDate }
                 let filtered = self.glucoseStorage.filterTooFrequentGlucose(filteredByDate, at: syncDate)
-                if !filtered.isEmpty {
-                    debug(.nightscout, "New glucose found")
-                    self.glucoseStorage.storeGlucose(filtered)
-                    self.apsManager.heartbeat(date: date, force: false)
-                    self.nightscoutManager.uploadGlucose()
-                }
+
+                guard filtered.isNotEmpty else { return }
+                debug(.nightscout, "New glucose found")
+
+                self.glucoseStorage.storeGlucose(filtered)
+                self.apsManager.heartbeat(date: date)
+                self.nightscoutManager.uploadGlucose()
+                let glucoseForHealth = filteredByDate.filter { !glucoseFromHealth.contains($0) }
+
+                guard glucoseForHealth.isNotEmpty else { return }
+                self.healthKitManager.saveIfNeeded(bloodGlucose: glucoseForHealth)
             }
             .store(in: &lifetime)
         timer.fire()
@@ -84,6 +102,10 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
                 }
             }
             .store(in: &lifetime)
+    }
+
+    func sourceInfo() -> [String: Any]? {
+        glucoseSource.sourceInfo()
     }
 }
 

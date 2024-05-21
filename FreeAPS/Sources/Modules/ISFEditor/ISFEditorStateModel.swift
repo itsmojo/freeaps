@@ -2,7 +2,6 @@ import SwiftUI
 
 extension ISFEditor {
     final class StateModel: BaseStateModel<Provider> {
-        @Injected() var settingsManager: SettingsManager!
         @Published var items: [Item] = []
         private(set) var autosensISF: Decimal?
         private(set) var autosensRatio: Decimal = 0
@@ -15,7 +14,7 @@ extension ISFEditor {
             case .mgdL:
                 return stride(from: 9, to: 540.01, by: 1.0).map { Decimal($0) }
             case .mmolL:
-                return stride(from: 0.1, to: 30.01, by: 0.1).map { Decimal($0) }
+                return stride(from: 1.0, to: 301.0, by: 1.0).map { ($0.decimal ?? .zero) / 10 }
             }
         }
 

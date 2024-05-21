@@ -12,15 +12,8 @@ extension Main {
                     NavigationView { self.state.modal!.view }
                         .navigationViewStyle(StackNavigationViewStyle())
                 }
-                .alert(isPresented: $state.isAlertPresented) {
-                    Alert(
-                        title: Text("Important message"),
-                        message: Text(state.alertMessage),
-                        dismissButton: .default(Text("Dismiss")) {
-                            state.isAlertPresented = false
-                            state.alertMessage = ""
-                        }
-                    )
+                .sheet(isPresented: $state.isSecondaryModalPresented) {
+                    state.secondaryModalView ?? EmptyView().asAny()
                 }
                 .onAppear(perform: configureView)
         }

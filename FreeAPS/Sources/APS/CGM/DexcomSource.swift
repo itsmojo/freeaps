@@ -26,6 +26,7 @@ final class DexcomSource: GlucoseSource {
         }
         .timeout(60, scheduler: processQueue, options: nil, customError: nil)
         .replaceError(with: [])
+        .replaceEmpty(with: [])
         .eraseToAnyPublisher()
     }
 
@@ -60,6 +61,10 @@ extension DexcomSource: TransmitterManagerDelegate {
             )
         }
         promise?(.success(bloodGlucose))
+    }
+
+    func sourceInfo() -> [String: Any]? {
+        [GlucoseSourceKey.description.rawValue: "Dexcom tramsmitter ID: \(transmitterID)"]
     }
 }
 

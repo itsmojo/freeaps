@@ -39,7 +39,15 @@ final class BaseLibreTransmitterSource: LibreTransmitterSource, Injectable {
         }
         .timeout(60, scheduler: processQueue, options: nil, customError: nil)
         .replaceError(with: [])
+        .replaceEmpty(with: [])
         .eraseToAnyPublisher()
+    }
+
+    func sourceInfo() -> [String: Any]? {
+        if let battery = manager?.battery {
+            return ["transmitterBattery": battery]
+        }
+        return nil
     }
 }
 

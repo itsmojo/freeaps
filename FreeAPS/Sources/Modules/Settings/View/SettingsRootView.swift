@@ -1,3 +1,4 @@
+import HealthKit
 import SwiftUI
 import Swinject
 
@@ -20,6 +21,10 @@ extension Settings {
                 Section(header: Text("Services")) {
                     Text("Nightscout").navigationLink(to: .nighscoutConfig, from: self)
                     Text("CGM").navigationLink(to: .cgm, from: self)
+                    if HKHealthStore.isHealthDataAvailable() {
+                        Text("Apple Health").navigationLink(to: .healthkit, from: self)
+                    }
+                    Text("Notifications").navigationLink(to: .notificationsConfig, from: self)
                 }
 
                 Section(header: Text("Configuration")) {
@@ -32,8 +37,16 @@ extension Settings {
                     Text("Autotune").navigationLink(to: .autotuneConfig, from: self)
                 }
 
-                if state.debugOptions {
-                    Section(header: Text("Config files")) {
+                Section(header: Text("Developer")) {
+                    Toggle("Debug options", isOn: $state.debugOptions)
+                    if state.debugOptions {
+                        Group {
+                            Text("NS Upload Profile").onTapGesture {
+                                state.uploadProfile()
+                            }
+                            Text("NS Uploaded Profile")
+                                .navigationLink(to: .configEditor(file: OpenAPS.Nightscout.uploadedProfile), from: self)
+                        }
                         Group {
                             Text("Preferences")
                                 .navigationLink(to: .configEditor(file: OpenAPS.Settings.preferences), from: self)
@@ -85,10 +98,18 @@ extension Settings {
                                 .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.tempTargetsPresets), from: self)
                             Text("Calibrations")
                                 .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.calibrations), from: self)
+                            Text("Current Temp")
+                                .navigationLink(to: .configEditor(file: OpenAPS.Monitor.tempBasal), from: self)
                             Text("Middleware")
                                 .navigationLink(to: .configEditor(file: OpenAPS.Middleware.determineBasal), from: self)
+                            Text("Edit settings json")
+                                .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.settings), from: self)
                         }
                     }
+                }
+
+                Section {
+                    Toggle("Animated Background", isOn: $state.animatedBackground)
                 }
 
                 Section {
@@ -103,7 +124,7 @@ extension Settings {
             }
             .onAppear(perform: configureView)
             .navigationTitle("Settings")
-            .navigationBarItems(leading: Button("Close", action: state.hideModal))
+            .navigationBarItems(leading: Button("Close", action: state.hideSettingsModal))
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

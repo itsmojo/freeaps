@@ -6,11 +6,10 @@ extension Bolus {
         @Injected() var unlockmanager: UnlockManager!
         @Injected() var apsManager: APSManager!
         @Injected() var broadcaster: Broadcaster!
-        @Injected() var settingsManager: SettingsManager!
         @Injected() var pumpHistotyStorage: PumpHistoryStorage!
         @Published var amount: Decimal = 0
-        @Published var inslinRecommended: Decimal = 0
-        @Published var inslinRequired: Decimal = 0
+        @Published var insulinRecommended: Decimal = 0
+        @Published var insulinRequired: Decimal = 0
         @Published var waitForSuggestion: Bool = false
         var waitForSuggestionInitial: Bool = false
 
@@ -25,8 +24,8 @@ extension Bolus {
                         guard let self = self else { return }
                         if !ok {
                             self.waitForSuggestion = false
-                            self.inslinRequired = 0
-                            self.inslinRecommended = 0
+                            self.insulinRequired = 0
+                            self.insulinRecommended = 0
                         }
                     }.store(in: &lifetime)
             }
@@ -75,9 +74,9 @@ extension Bolus {
 
         func setupInsulinRequired() {
             DispatchQueue.main.async {
-                self.inslinRequired = self.provider.suggestion?.insulinReq ?? 0
-                self.inslinRecommended = self.apsManager
-                    .roundBolus(amount: max(self.inslinRequired * self.settingsManager.settings.insulinReqFraction, 0))
+                self.insulinRequired = self.provider.suggestion?.insulinReq ?? 0
+                self.insulinRecommended = self.apsManager
+                    .roundBolus(amount: max(self.insulinRequired * self.settingsManager.settings.insulinReqFraction, 0))
             }
         }
     }

@@ -16,13 +16,8 @@ struct Suggestion: JSON, Equatable {
     let temp: TempType?
     let bg: Decimal?
     let reservoir: Decimal?
-    let isf: Int?
     var timestamp: Date?
     var recieved: Bool?
-
-    var isNoTempRequired: Bool {
-        reason.contains("no temp required")
-    }
 }
 
 struct Predictions: JSON, Equatable {
@@ -51,7 +46,6 @@ extension Suggestion {
         case reservoir
         case timestamp
         case recieved
-        case isf = "ISF"
     }
 }
 
@@ -70,4 +64,14 @@ protocol SuggestionObserver {
 
 protocol EnactedSuggestionObserver {
     func enactedSuggestionDidUpdate(_ suggestion: Suggestion)
+}
+
+extension Suggestion {
+    var reasonParts: [String] {
+        reason.components(separatedBy: "; ").first?.components(separatedBy: ", ") ?? []
+    }
+
+    var reasonConclusion: String {
+        reason.components(separatedBy: "; ").last ?? ""
+    }
 }

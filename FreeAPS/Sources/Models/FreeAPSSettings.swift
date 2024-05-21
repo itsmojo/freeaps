@@ -14,6 +14,15 @@ struct FreeAPSSettings: JSON, Equatable {
     var cgm: CGMType = .nightscout
     var uploadGlucose: Bool = false
     var useCalendar: Bool = false
+    var useAppleHealth: Bool = false
+    var glucoseBadge: Bool = false
+    var glucoseNotificationsAlways: Bool = false
+    var useAlarmSound: Bool = false
+    var addSourceInfoToGlucoseNotifications: Bool = false
+    var lowGlucose: Decimal = 72
+    var highGlucose: Decimal = 270
+    var carbsRequiredThreshold: Decimal = 10
+    var animatedBackground: Bool = false
 }
 
 extension FreeAPSSettings: Decodable {
@@ -72,6 +81,45 @@ extension FreeAPSSettings: Decodable {
 
         if let useCalendar = try? container.decode(Bool.self, forKey: .useCalendar) {
             settings.useCalendar = useCalendar
+        }
+
+        if let useAppleHealth = try? container.decode(Bool.self, forKey: .useAppleHealth) {
+            settings.useAppleHealth = useAppleHealth
+        }
+
+        if let glucoseBadge = try? container.decode(Bool.self, forKey: .glucoseBadge) {
+            settings.glucoseBadge = glucoseBadge
+        }
+
+        if let glucoseNotificationsAlways = try? container.decode(Bool.self, forKey: .glucoseNotificationsAlways) {
+            settings.glucoseNotificationsAlways = glucoseNotificationsAlways
+        }
+
+        if let useAlarmSound = try? container.decode(Bool.self, forKey: .useAlarmSound) {
+            settings.useAlarmSound = useAlarmSound
+        }
+
+        if let addSourceInfoToGlucoseNotifications = try? container.decode(
+            Bool.self,
+            forKey: .addSourceInfoToGlucoseNotifications
+        ) {
+            settings.addSourceInfoToGlucoseNotifications = addSourceInfoToGlucoseNotifications
+        }
+
+        if let lowGlucose = try? container.decode(Decimal.self, forKey: .lowGlucose) {
+            settings.lowGlucose = lowGlucose
+        }
+
+        if let highGlucose = try? container.decode(Decimal.self, forKey: .highGlucose) {
+            settings.highGlucose = highGlucose
+        }
+
+        if let carbsRequiredThreshold = try? container.decode(Decimal.self, forKey: .carbsRequiredThreshold) {
+            settings.carbsRequiredThreshold = carbsRequiredThreshold
+        }
+
+        if let animatedBackground = try? container.decode(Bool.self, forKey: .animatedBackground) {
+            settings.animatedBackground = animatedBackground
         }
 
         self = settings
